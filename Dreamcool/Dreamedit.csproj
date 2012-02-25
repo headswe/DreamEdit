@@ -42,11 +42,13 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RichTextBoxLinks">
-      <HintPath>..\..\..\..\..\..\..\ScintillaNet\RichTextBoxLinks.dll</HintPath>
+    <Reference Include="RichTextBoxLinks, Version=1.0.1829.14763, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RichTextBoxLinks.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNet">
-      <HintPath>..\..\..\..\..\..\..\ScintillaNet\ScintillaNet.dll</HintPath>
+    <Reference Include="ScintillaNet, Version=2.2.3581.19319, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ScintillaNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
