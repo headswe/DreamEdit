@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1485D97B-5DB4-4EB6-9554-A381A80D9149}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <AssemblyName>DreamEdit</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RichTextBoxLinks">
+      <HintPath>..\..\..\..\..\..\..\ScintillaNet\RichTextBoxLinks.dll</HintPath>
+    </Reference>
+    <Reference Include="ScintillaNet">
+      <HintPath>..\..\..\..\..\..\..\ScintillaNet\ScintillaNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FRdialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRdialog.Designer.cs">
+      <DependentUpon>FRdialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Icons.cs" />
+    <Compile Include="fileInfo.cs" />
+    <Compile Include="objTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objTree.Designer.cs">
+      <DependentUpon>objTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mediaplayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mediaplayer.Designer.cs">
+      <DependentUpon>Mediaplayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parser.cs" />
+    <Compile Include="string_dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="string_dialog.Designer.cs">
+      <DependentUpon>string_dialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Info.cs" />
+    <Compile Include="mainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainWindow.Designer.cs">
+      <DependentUpon>mainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="textEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="textEditor.Designer.cs">
+      <DependentUpon>textEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Console.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Console.Designer.cs">
+      <DependentUpon>Console.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="mainWindow.resx">
+      <DependentUpon>mainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objTree.resx">
+      <DependentUpon>objTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRdialog.resx">
+      <DependentUpon>FRdialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mediaplayer.resx">
+      <DependentUpon>Mediaplayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="string_dialog.resx">
+      <DependentUpon>string_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="textEditor.resx">
+      <DependentUpon>textEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Console.resx">
+      <DependentUpon>Console.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gui\dir.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gui\speaker.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icon.ico" />
+    <None Include="res\default.dm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\default.dme">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="SciLexer.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

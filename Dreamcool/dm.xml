@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScintillaNET>
+
+    <!-- Set up the language, style, and lexer for batch -->
+    <Language Name="batchs">
+      <AutoComplete FillUpCharacters=".([" SingleLineAccept="True" IsCaseSensitive="False">
+        <List>
+          var for if
+        </List>
+      </AutoComplete>
+      <!-- Lexer -->
+        <Lexer LexerName="cpp" LineCommentPrefix="//" StreamCommentPrefix="/* " StreamCommentSuffix=" */">
+            <Keywords List="0">var for if global while do in else</Keywords>
+        </Lexer>
+
+        <!-- Style -->
+       <Styles>
+         <Style Name="STRING"					ForeColor="Teal"/>
+         <Style Name="LITERALSTRING" ForeColor="Teal"/>          
+       </Styles>
+        <!-- Other Settings -->
+        <Indentation TabWidth="2" UseTabs="true"/>
+
+    </Language>
+
+</ScintillaNET>
