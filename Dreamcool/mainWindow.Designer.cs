@@ -56,6 +56,8 @@
             this.addNewFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.work_bar = new System.Windows.Forms.ProgressBar();
             this.console = new DreamEdit.Console();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -300,6 +302,21 @@
             this.addNewDirectoryToolStripMenuItem.Text = "Add new directory";
             this.addNewDirectoryToolStripMenuItem.Click += new System.EventHandler(this.addNewDirectoryToolStripMenuItem_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 368);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(972, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // work_bar
+            // 
+            this.work_bar.Location = new System.Drawing.Point(2, 369);
+            this.work_bar.Name = "work_bar";
+            this.work_bar.Size = new System.Drawing.Size(100, 21);
+            this.work_bar.TabIndex = 4;
+            // 
             // console
             // 
             this.console.AllowDrop = true;
@@ -319,6 +336,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 390);
+            this.Controls.Add(this.work_bar);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.console);
@@ -342,6 +361,7 @@
             this.tab_menu.ResumeLayout(false);
             this.file_list_menu.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -374,6 +394,8 @@
         private System.Windows.Forms.ToolStripMenuItem newDMEToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem gotoLineToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ProgressBar work_bar;
     }
 }
 

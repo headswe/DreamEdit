@@ -40,7 +40,7 @@
             this.console_textbox.Location = new System.Drawing.Point(-2, -2);
             this.console_textbox.Name = "console_textbox";
             this.console_textbox.ReadOnly = true;
-            this.console_textbox.Size = new System.Drawing.Size(972, 104);
+            this.console_textbox.Size = new System.Drawing.Size(972, 80);
             this.console_textbox.TabIndex = 0;
             this.console_textbox.Text = "";
             this.console_textbox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.console_textbox_LinkClicked);
@@ -52,7 +52,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.console_textbox);
             this.Name = "Console";
-            this.Size = new System.Drawing.Size(968, 100);
+            this.Size = new System.Drawing.Size(968, 90);
             this.ResumeLayout(false);
 
         }

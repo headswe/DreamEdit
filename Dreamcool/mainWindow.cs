@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Microsoft.Win32;
-
 namespace DreamEdit
 {
 
@@ -67,6 +66,7 @@ namespace DreamEdit
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             men_open.ShowDialog();
+            dme_load(men_open.FileName);
         }
         private void close_all_tabs()
         {
@@ -123,16 +123,18 @@ namespace DreamEdit
                 reset();
             if (this.men_open.FileName.IndexOf(".dme") != -1)
             {
-                info.dme_path = men_open.FileName;
-                info.load_dme();
-                if (info.dme_Loaded)
-                    buildToolStripMenuItem.Enabled = true;
-                System.Console.WriteLine(info.dme_path);
                 return;
             }
 
         }
-
+        private void dme_load(string filename)
+        {
+            info.dme_path = filename;
+            info.load_dme();
+            if (info.dme_Loaded)
+                buildToolStripMenuItem.Enabled = true;
+            System.Console.WriteLine(info.dme_path);
+        }
         private void mainWindow_Load(object sender, EventArgs e)
         {
 
@@ -154,6 +156,7 @@ namespace DreamEdit
                 HideCheckBox(e.Node);
             }
             e.DrawDefault = true;
+            
         }
         private void HideCheckBox(TreeNode node)
         {

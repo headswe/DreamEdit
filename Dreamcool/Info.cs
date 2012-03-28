@@ -53,11 +53,19 @@ namespace DreamEdit
             }
             dir = Path.GetDirectoryName(dme_path);
             root = new TreeNode(Path.GetFileNameWithoutExtension(dme_path));
+            string[] test = File.ReadAllLines(dme_path);
+            int t_lines = test.Length;
+            int d_lines = 0;
+            ProgressBar bar = (ProgressBar)mainWindow.Controls["work_bar"];
+            test = null;
             StreamReader tr = new StreamReader(dme_path);
+            bar.Visible = true;
             while (tr.EndOfStream == false)
             {
                 string temp = tr.ReadLine();
                 string[] lines = temp.Split(' ');
+                d_lines++;
+                bar.Value = (d_lines / t_lines );
                 if (lines[0] == "#include")
                 {
                     string line = lines[1];
@@ -99,6 +107,7 @@ namespace DreamEdit
                         dirsfull[line] = lines[lines.Length - 1];
                     }
 
+
                 }
                 
             }
@@ -108,6 +117,7 @@ namespace DreamEdit
             dme_Loaded = true;
             tr.Close();
             save_dme();
+            bar.Visible = false;
         }
         public void save_dme()
         {
