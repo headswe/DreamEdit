@@ -60,3 +60,4 @@
 /Dreamcool/bin/Release/default.xml
 /Dreamcool/bin/Debug/dm.xml
 /Dreamcool/bin/Release/dm.xml
+*.suo
