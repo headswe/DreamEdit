@@ -316,6 +316,7 @@
             this.work_bar.Name = "work_bar";
             this.work_bar.Size = new System.Drawing.Size(100, 21);
             this.work_bar.TabIndex = 4;
+            this.work_bar.Visible = false;
             // 
             // console
             // 
