@@ -455,6 +455,7 @@ namespace DreamEdit
             compiler.StartInfo.UseShellExecute = false;
             compiler.StartInfo.RedirectStandardOutput = true;
             compiler.StartInfo.RedirectStandardError = true;
+            compiler.StartInfo.CreateNoWindow = true;
             backgroundWorker1.ReportProgress(0, "| Compiling " + Path.GetFileName(info.dme_path) + " |");
 
             compiler.OutputDataReceived += output_recv;
