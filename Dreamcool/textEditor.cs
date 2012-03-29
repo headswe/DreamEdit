@@ -11,11 +11,19 @@ namespace DreamEdit
 {
     public partial class textEditor : UserControl
     {
-        public bool ismodified = false;
+        public bool isModified = false;
         public bool hasbeenmodified = false; // Best variable ever
-        public textEditor()
+        public mainWindow mainForm;
+        public textEditor(mainWindow parent,Console C)
         {
             InitializeComponent();
+            mainForm = parent;
+            TabControl tabCon = (TabControl)scintilla2.FindReplace.Window.Controls["tabAll"];
+            TabPage bP = new TabPage();
+            bP.Controls.Add(new FRdialog(mainWindow.info, C));
+            bP.Name = "Find in Files";
+            bP.Text = bP.Name;
+            tabCon.TabPages.Add(bP);
         }
 
         private void scintilla2_TextInserted(object sender, ScintillaNet.TextModifiedEventArgs e)
@@ -36,9 +44,17 @@ namespace DreamEdit
                 return;
             }
             TabPage P = (TabPage)this.Tag;
-            ismodified = true;
+            isModified = true;
             P.Parent.Invalidate();
             
+        }
+
+        private void scintilla2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                mainForm.openFRdialog();
+            }
         }
     }
 }

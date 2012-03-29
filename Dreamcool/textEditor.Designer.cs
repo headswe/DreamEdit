@@ -57,7 +57,7 @@
             this.scintilla2.Lexing.StreamCommentSufix = "";
             this.scintilla2.Location = new System.Drawing.Point(0, 28);
             this.scintilla2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.scintilla2.Margins.Margin0.Width = 30;
+            this.scintilla2.Margins.Margin0.Width = 40;
             this.scintilla2.Name = "scintilla2";
             this.scintilla2.Size = new System.Drawing.Size(390, 287);
             this.scintilla2.Styles.BraceBad.FontName = "Verdana";
@@ -72,6 +72,7 @@
             this.scintilla2.Load += new System.EventHandler(this.scintilla2_Load);
             this.scintilla2.TextChanged += new System.EventHandler<System.EventArgs>(this.scintilla2_TextChanged);
             this.scintilla2.TextInserted += new System.EventHandler<ScintillaNet.TextModifiedEventArgs>(this.scintilla2_TextInserted);
+            this.scintilla2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scintilla2_KeyDown);
             // 
             // toolStripContainer1
             // 

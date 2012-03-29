@@ -198,7 +198,7 @@ namespace DreamEdit
             System.IO.StreamWriter file = new System.IO.StreamWriter(path);
             file.Write(P.Controls[0].Controls["scintilla2"].Text);
             textEditor UC = (textEditor)P.Controls[0];
-            UC.ismodified = false;
+            UC.isModified = false;
             tabControl1.Invalidate();
             file.Close();
         }
@@ -209,7 +209,7 @@ namespace DreamEdit
             file.Write(P.Controls[0].Controls["scintilla2"].Text);
             F.Text = P.Controls[0].Controls["scintilla2"].Text;
             textEditor UC = (textEditor)P.Controls[0];
-            UC.ismodified = false;
+            UC.isModified = false;
             tabControl1.Invalidate();
             file.Close();
 
@@ -229,7 +229,7 @@ namespace DreamEdit
             if (F == null)
                 throw new NullReferenceException("Could not find file " + info.dirs + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor());
+            P.Controls.Add(new textEditor(this, console));
             P.Controls[0].Controls["scintilla2"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
@@ -267,7 +267,7 @@ namespace DreamEdit
             if (F.Extension != ".dm")
                 return;
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor());
+            P.Controls.Add(new textEditor(this, console));
             P.Controls[0].Controls["scintilla2"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
@@ -303,7 +303,7 @@ namespace DreamEdit
             if (F == null)
                 throw new NullReferenceException("Could not find file " + info.dir + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor());
+            P.Controls.Add(new textEditor(this, console));
             P.Controls[0].Controls["scintilla2"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
@@ -352,7 +352,7 @@ namespace DreamEdit
                     {
                         TabPage _tabPage = tabControl1.TabPages[x];
                         textEditor F = (textEditor)_tabPage.Controls[0];
-                        if (!F.ismodified)
+                        if (!F.isModified)
                         {
                             close_tab(_tabPage);
                         }
@@ -522,7 +522,7 @@ namespace DreamEdit
             // Get the real bounds for the tab rectangle.
             Rectangle _TabBounds = tabControl1.GetTabRect(e.Index);
             textEditor F = (textEditor)_TabPage.Controls[0];
-            if (F.ismodified)
+            if (F.isModified)
                 _TextBrush = new SolidBrush(Color.Red);
             else
                 _TextBrush = new System.Drawing.SolidBrush(e.ForeColor);
@@ -689,10 +689,13 @@ namespace DreamEdit
 
         private void findAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FRdialog f = new FRdialog(info, console);
-            f.ShowDialog();
+            openFRdialog();
         }
-
+        public void openFRdialog()
+        {
+            FRdialog f = new FRdialog(info, console);
+            //f.ShowDialog();
+        }
         private void newDMEToolStripMenuItem_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
@@ -813,7 +816,7 @@ namespace DreamEdit
             foreach (TabPage _tabPage in tabControl1.TabPages)
             {
                 textEditor F = (textEditor)_tabPage.Controls[0];
-                if (F.ismodified)
+                if (F.isModified)
                 {
                     if (ask_save_all())
                         return;

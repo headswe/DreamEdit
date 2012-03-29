@@ -85,9 +85,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+        //    this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRdialog";
             this.Text = "Find in files";
+            this.Load += new System.EventHandler(this.FRdialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

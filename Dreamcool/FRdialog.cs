@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DreamEdit
 {
-    public partial class FRdialog : Form
+    public partial class FRdialog : UserControl
     {
         Info info;
         Console con;
@@ -100,6 +100,11 @@ namespace DreamEdit
             {
                 con.AppendLink("Found \"" + f.str + "\" in " + f.file + " on line "+f.line, f.file + ":" + f.line);
             }
+        }
+
+        private void FRdialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
