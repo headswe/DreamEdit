@@ -63,3 +63,4 @@
 *.suo
 /Dreamcool/bin/Debug
 /Dreamcool/bin/Release
+*.resources
