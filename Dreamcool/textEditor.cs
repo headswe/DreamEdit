@@ -20,7 +20,7 @@ namespace DreamEdit
             mainForm = parent;
             TabControl tabCon = (TabControl)scintilla2.FindReplace.Window.Controls["tabAll"];
             TabPage bP = new TabPage();
-            bP.Controls.Add(new FRdialog(mainWindow.info, C));
+            bP.Controls.Add(new FRdialog(mainWindow.info, C, parent));
             bP.Name = "Find in Files";
             bP.Text = bP.Name;
             tabCon.TabPages.Add(bP);

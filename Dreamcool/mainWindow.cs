@@ -8,7 +8,6 @@ using System.Diagnostics;
 using Microsoft.Win32;
 namespace DreamEdit
 {
-
     public partial class mainWindow : Form
     {
         // constants used to hide a checkbox
@@ -37,6 +36,7 @@ namespace DreamEdit
             public IntPtr lParam;
 
         }
+
         ImageList image_list = new ImageList();
         public mainWindow()
         {
@@ -53,21 +53,12 @@ namespace DreamEdit
             file_list.ImageList = image_list;
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void menu_1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             men_open.ShowDialog();
             dme_load(men_open.FileName);
         }
+        
         private void close_all_tabs()
         {
                 foreach (TabPage P in tabControl1.TabPages)
@@ -75,6 +66,7 @@ namespace DreamEdit
                     close_tab(P);
                 }
         }
+        
         private bool ask_save_all()
         {
             DialogResult res = MessageBox.Show("Do you want to save all open tabs?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -137,7 +129,6 @@ namespace DreamEdit
         }
         private void mainWindow_Load(object sender, EventArgs e)
         {
-
             hide_console();
         }
 
@@ -417,7 +408,7 @@ namespace DreamEdit
                 }
             }
         }
-        private void hide_console()
+        public void hide_console()
         {
             if (!console.Visible)
                 return;
@@ -425,7 +416,7 @@ namespace DreamEdit
             splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height + console.Height + 5);
 
         }
-        private void show_console()
+        public void show_console()
         {
             if (console.Visible)
                 return;
@@ -693,7 +684,7 @@ namespace DreamEdit
         }
         public void openFRdialog()
         {
-            FRdialog f = new FRdialog(info, console);
+            FRdialog f = new FRdialog(info, console, this);
             //f.ShowDialog();
         }
         private void newDMEToolStripMenuItem_Click(object sender, EventArgs e)

@@ -40,9 +40,9 @@
             // scintilla2
             // 
             this.scintilla2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.scintilla2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.scintilla2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scintilla2.ConfigurationManager.CustomLocation = "dm.xml";
             this.scintilla2.ConfigurationManager.Language = "batchs";
             this.scintilla2.Folding.Flags = ScintillaNet.FoldFlag.Box;

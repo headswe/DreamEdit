@@ -13,25 +13,24 @@ namespace DreamEdit
     public partial class FRdialog : UserControl
     {
         Info info;
-        Console con;
+        Console console;
+        mainWindow mainWindow;
         List<lineFound> arrStr = new List<lineFound>();
-        public FRdialog(Info info,Console c)
+        public FRdialog(Info info, Console c, mainWindow m)
         {
             this.info = info;
+            console = c;
+            mainWindow = m;
             InitializeComponent();
-            con = c;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         struct lineFound
         {
             public string str;
             public string file;
             public int line;
         }
+       
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             worker.WorkerReportsProgress = true;
@@ -87,6 +86,7 @@ namespace DreamEdit
         {
             textBox1.Enabled = false;
             button1.Enabled = false;
+            mainWindow.show_console();
             arrStr = new List<lineFound>();
             worker.RunWorkerAsync();
         }
@@ -96,15 +96,11 @@ namespace DreamEdit
             textBox1.Enabled = true;
             button1.Enabled = true;
             progressBar1.Value = 0;
-            foreach (lineFound f in arrStr)
-            {
-                con.AppendLink("Found \"" + f.str + "\" in " + f.file + " on line "+f.line, f.file + ":" + f.line);
-            }
-        }
-
-        private void FRdialog_Load(object sender, EventArgs e)
-        {
-
+            if (arrStr.Count == 0)
+                console.AppendText("\"" + textBox1.Text + "\" was not found anywhere in the project.");
+            else
+                foreach (lineFound f in arrStr)
+                    console.AppendLink("Found \"" + f.str + "\" in " + f.file + " on line "+f.line, f.file + ":" + f.line);
         }
     }
 }

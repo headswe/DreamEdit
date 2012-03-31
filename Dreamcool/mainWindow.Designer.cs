@@ -76,7 +76,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(974, 23);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // menu
             // 
@@ -107,7 +106,6 @@
             this.menu_1.Name = "menu_1";
             this.menu_1.Size = new System.Drawing.Size(37, 19);
             this.menu_1.Text = "File";
-            this.menu_1.Click += new System.EventHandler(this.menu_1_Click);
             // 
             // newDMEToolStripMenuItem
             // 
@@ -241,7 +239,6 @@
             // 
             this.splitContainer1.Panel1.AllowDrop = true;
             this.splitContainer1.Panel1.Controls.Add(this.file_list);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 

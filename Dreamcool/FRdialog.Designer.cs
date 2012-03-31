@@ -61,7 +61,6 @@
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "String to find:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // progressBar1
             // 
@@ -88,7 +87,6 @@
         //    this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRdialog";
             this.Text = "Find in files";
-            this.Load += new System.EventHandler(this.FRdialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
