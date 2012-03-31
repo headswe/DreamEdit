@@ -20,7 +20,7 @@ namespace DreamEdit
             mainForm = parent;
             TabControl tabCon = (TabControl)scintilla2.FindReplace.Window.Controls["tabAll"];
             TabPage bP = new TabPage();
-            bP.Controls.Add(new FRdialog(mainWindow.info, C));
+            bP.Controls.Add(new FRtab(mainWindow.info, C));
             bP.Name = "Find in Files";
             bP.Text = bP.Name;
             tabCon.TabPages.Add(bP);
@@ -51,10 +51,6 @@ namespace DreamEdit
 
         private void scintilla2_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.F)
-            {
-                mainForm.openFRdialog();
-            }
         }
     }
 }

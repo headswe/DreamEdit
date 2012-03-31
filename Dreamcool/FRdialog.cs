@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DreamEdit
 {
-    public partial class FRdialog : UserControl
+    public partial class FRdialog : Form
     {
         Info info;
         Console con;

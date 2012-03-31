@@ -422,7 +422,7 @@ namespace DreamEdit
             if (!console.Visible)
                 return;
             console.Visible = false;
-            splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height + console.Height + 5);
+            splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height + console.Height - statusStrip1.Height + 10);
 
         }
         private void show_console()
@@ -430,7 +430,7 @@ namespace DreamEdit
             if (console.Visible)
                 return;
             console.Visible = true;
-            splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height - console.Height - 5);
+            splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height - console.Height +statusStrip1.Height - 10);
 
         }
 
@@ -694,7 +694,7 @@ namespace DreamEdit
         public void openFRdialog()
         {
             FRdialog f = new FRdialog(info, console);
-            //f.ShowDialog();
+            f.ShowDialog();
         }
         private void newDMEToolStripMenuItem_Click(object sender, EventArgs e)
         {
