@@ -205,6 +205,10 @@ namespace DreamEdit
         private void save_tab(TabPage P)
         {
             fileInfo F = (fileInfo)P.Tag;
+            if (info.sound_Filetypes.Contains(F.Extension))
+            {
+                return;
+            }
             System.IO.StreamWriter file = new System.IO.StreamWriter(F.FullPath);
             file.Write(P.Controls[0].Controls["scintilla2"].Text);
             F.Text = P.Controls[0].Controls["scintilla2"].Text;
@@ -417,7 +421,7 @@ namespace DreamEdit
                 }
             }
         }
-        private void hide_console()
+        public void hide_console()
         {
             if (!console.Visible)
                 return;
@@ -425,7 +429,7 @@ namespace DreamEdit
             splitContainer1.Size = new Size(splitContainer1.Width, splitContainer1.Height + console.Height - statusStrip1.Height + 10);
 
         }
-        private void show_console()
+        public void show_console()
         {
             if (console.Visible)
                 return;
