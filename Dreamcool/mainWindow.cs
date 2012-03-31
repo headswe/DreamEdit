@@ -174,7 +174,6 @@ namespace DreamEdit
 
         private void savemenu_Click(object sender, EventArgs e)
         {
-
             save_all();
         }
         private void save_all()

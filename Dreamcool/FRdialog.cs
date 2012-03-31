@@ -102,5 +102,10 @@ namespace DreamEdit
                 foreach (lineFound f in arrStr)
                     console.AppendLink("Found \"" + f.str + "\" in " + f.file + " on line "+f.line, f.file + ":" + f.line);
         }
+
+        private void FRdialog_Paint(object sender, PaintEventArgs e)
+        {
+            textBox1.Focus();
+        }
     }
 }
