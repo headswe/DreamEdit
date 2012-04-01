@@ -205,7 +205,7 @@ namespace DreamEdit
         private void save_tab(TabPage P)
         {
             fileInfo F = (fileInfo)P.Tag;
-            if (info.sound_Filetypes.Contains(F.Extension))
+            if (F == null || info.sound_Filetypes.Contains(F.Extension))
             {
                 return;
             }
@@ -263,6 +263,8 @@ namespace DreamEdit
             if (info.sound_Filetypes.Contains(F.Extension))
             {
                 TabPage V = new TabPage(F.FileName + F.Extension);
+                V.Text = "TEST";
+                V.Name = V.Text;
                 V.Controls.Add(new Mediaplayer(info, F.FullPath));
                 tabControl1.TabPages.Add(V);
                 tabControl1.SelectTab(V);
