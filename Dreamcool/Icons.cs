@@ -319,7 +319,7 @@ namespace BlackFox.Win32
             {
                 CurrentVer = Root.OpenSubKey(ApplicationKey.OpenSubKey("CurVer").GetValue("").ToString());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
