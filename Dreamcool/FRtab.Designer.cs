@@ -86,7 +86,6 @@
             this.Name = "FRtab";
             this.Size = new System.Drawing.Size(425, 209);
             this.Load += new System.EventHandler(this.FRtab_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FRtab_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -108,7 +108,8 @@ namespace DreamEdit
 
         private void FRdialog_Load(object sender, EventArgs e)
         {
-
+            textBox1.Select();
+            textBox1.Focus();
         }
     }
 }
