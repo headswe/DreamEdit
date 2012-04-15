@@ -832,5 +832,10 @@ namespace DreamEdit
                 }
             }
         }
+
+        private void clearConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            console.ClearText();
+        }
     }
 }
