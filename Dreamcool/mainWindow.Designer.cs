@@ -59,6 +59,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.work_bar = new System.Windows.Forms.ProgressBar();
             this.console = new DreamEdit.Console();
+            this.clearConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -134,6 +135,7 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toggleConsoleToolStripMenuItem,
+            this.clearConsoleToolStripMenuItem,
             this.viewObjectTreeToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
@@ -230,9 +232,9 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Location = new System.Drawing.Point(0, 23);
             this.splitContainer1.Name = "splitContainer1";
@@ -321,8 +323,8 @@
             // console
             // 
             this.console.AllowDrop = true;
-            this.console.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.console.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.console.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.console.Location = new System.Drawing.Point(2, 284);
             this.console.Name = "console";
@@ -330,6 +332,13 @@
             this.console.TabIndex = 2;
             this.console.DragDrop += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragDrop);
             this.console.DragEnter += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragEnter);
+            // 
+            // clearConsoleToolStripMenuItem
+            // 
+            this.clearConsoleToolStripMenuItem.Name = "clearConsoleToolStripMenuItem";
+            this.clearConsoleToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.clearConsoleToolStripMenuItem.Text = "Clear Console";
+            this.clearConsoleToolStripMenuItem.Click += new System.EventHandler(this.clearConsoleToolStripMenuItem_Click);
             // 
             // mainWindow
             // 
@@ -397,6 +406,7 @@
         private System.Windows.Forms.ToolStripMenuItem gotoLineToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ProgressBar work_bar;
+        private System.Windows.Forms.ToolStripMenuItem clearConsoleToolStripMenuItem;
     }
 }
 

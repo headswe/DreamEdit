@@ -11,7 +11,7 @@ namespace DreamEdit
 {
     public partial class Console : UserControl
     {
-        int errorcount = 0;
+        int error_count = 0;
         public Console()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DreamEdit
         public void AppendText(string S)
         {
             if (S.IndexOf(":error:") == -1 && S.IndexOf(":warning:") == -1)
-                console_textbox.AppendText(S);//code\Aryn\Airflow.dm:6:error: zone_share_percent: undefined var
+                console_textbox.AppendText(S);
             else
             {
                 string[] line = S.Split(':');
@@ -45,10 +45,12 @@ namespace DreamEdit
                 hyper = hyper.Replace("\\","/");
                 console_textbox.InsertLink(S, hyper);
                 console_textbox.AppendText("\n");
-                errorcount++;
+                error_count++;
             }
-            
-
+        }
+        public void ClearText()
+        {
+            console_textbox.Clear();
         }
         private void console_textbox_TextChanged(object sender, EventArgs e)
         {
