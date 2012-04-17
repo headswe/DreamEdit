@@ -699,7 +699,7 @@ namespace DreamEdit
         }
         public void openFRdialog()
         {
-            FRdialog f = new FRdialog(info, console);
+            FRdialog f = new FRdialog(info, console, this);
             f.ShowDialog();
         }
         private void newDMEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -831,6 +831,11 @@ namespace DreamEdit
                     return;
                 }
             }
+        }
+
+        private void clearConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            console.ClearText();
         }
     }
 }
