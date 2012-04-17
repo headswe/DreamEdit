@@ -263,7 +263,7 @@ namespace DreamEdit
             if (info.sound_Filetypes.Contains(F.Extension))
             {
                 TabPage V = new TabPage(F.FileName + F.Extension);
-                V.Text = "TEST";
+                V.Text = F.FileName + F.Extension;
                 V.Name = V.Text;
                 V.Controls.Add(new Mediaplayer(info, F.FullPath));
                 tabControl1.TabPages.Add(V);

@@ -65,6 +65,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BZip2\BZip2.cs" />
+    <Compile Include="BZip2\BZip2Constants.cs" />
+    <Compile Include="BZip2\BZip2Exception.cs" />
+    <Compile Include="BZip2\BZip2InputStream.cs" />
+    <Compile Include="BZip2\BZip2OutputStream.cs" />
+    <Compile Include="BZip2\Checksums\Adler32.cs" />
+    <Compile Include="BZip2\Checksums\CRC32.cs" />
+    <Compile Include="BZip2\Checksums\IChecksum.cs" />
+    <Compile Include="BZip2\Checksums\StrangeCRC.cs" />
+    <Compile Include="BZip2\Core\FileSystemScanner.cs" />
+    <Compile Include="BZip2\Core\INameTransform.cs" />
+    <Compile Include="BZip2\Core\IScanFilter.cs" />
+    <Compile Include="BZip2\Core\NameFilter.cs" />
+    <Compile Include="BZip2\Core\PathFilter.cs" />
+    <Compile Include="BZip2\Core\StreamUtils.cs" />
+    <Compile Include="BZip2\Core\WindowsPathUtils.cs" />
+    <Compile Include="BZip2\SharpZipBaseException.cs" />
     <Compile Include="FRdialog.cs">
       <SubType>Form</SubType>
     </Compile>
