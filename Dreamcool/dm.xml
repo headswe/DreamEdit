@@ -2,21 +2,22 @@
 <ScintillaNET>
 
     <!-- Set up the language, style, and lexer for batch -->
-    <Language Name="batchs">
+    <Language Name="cpp">
       <AutoComplete FillUpCharacters=".([" SingleLineAccept="True" IsCaseSensitive="False">
         <List>
           var for if
         </List>
       </AutoComplete>
       <!-- Lexer -->
-        <Lexer LexerName="cpp" LineCommentPrefix="//" StreamCommentPrefix="/* " StreamCommentSuffix=" */">
+        <Lexer   LineCommentPrefix="//" StreamCommentPrefix="/* " StreamCommentSuffix=" */">
             <Keywords List="0">var for if global while do in else</Keywords>
         </Lexer>
 
         <!-- Style -->
        <Styles>
          <Style Name="STRING"					ForeColor="Teal"/>
-         <Style Name="LITERALSTRING" ForeColor="Teal"/>          
+         <Style Name="LITERALSTRING" ForeColor="Teal"/>
+         <Style Name="BINNUMBER"					ForeColor="Teal" />
        </Styles>
         <!-- Other Settings -->
         <Indentation TabWidth="2" UseTabs="true"/>

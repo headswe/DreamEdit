@@ -44,7 +44,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.scintilla2.ConfigurationManager.CustomLocation = "dm.xml";
-            this.scintilla2.ConfigurationManager.Language = "batchs";
+            this.scintilla2.ConfigurationManager.Language = "cpp";
             this.scintilla2.Folding.Flags = ScintillaNet.FoldFlag.Box;
             this.scintilla2.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.scintilla2.Indentation.ShowGuides = true;

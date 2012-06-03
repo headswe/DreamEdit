@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Collections.Generic;
 namespace DreamEdit
 {
 
@@ -38,6 +39,8 @@ namespace DreamEdit
 
         }
         ImageList image_list = new ImageList();
+        List<String> recent_list;
+        List<ToolStripMenuItem> recent_list_menu = new List<ToolStripMenuItem>();
         public mainWindow()
         {
             InitializeComponent();
@@ -51,8 +54,97 @@ namespace DreamEdit
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dms", BlackFox.Win32.Icons.SystemIconSize.Small));
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dmm", BlackFox.Win32.Icons.SystemIconSize.Small));
             file_list.ImageList = image_list;
-        }
+            recent_list = getRecent();
+            foreach (string path in recent_list)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(path, null, recent_Click, Path.GetFileName(path));
+                menu_1.DropDownItems.Add(item);
+                recent_list_menu.Add(item);
 
+            }
+        }
+        private void saveRecent()
+        {
+            StreamWriter tr = new StreamWriter("recent.cfg");
+            foreach (String D in recent_list)
+            {
+                tr.WriteLine(D);
+            }
+            tr.Close();
+        }
+        private void addToRecent(string filename)
+        {
+            ToolStripMenuItem temp = null;
+            if (!recent_list.Contains(filename))
+            {
+                if (recent_list.Count >= 5)
+                {
+                    recent_list.RemoveAt(4);
+                    recent_list.Add(filename);
+                }
+                else
+                    recent_list.Add(filename);
+            }
+            else
+            {
+
+                foreach (ToolStripMenuItem d in recent_list_menu)
+                {
+                    if (d.Text == filename)
+                        temp = d; break;
+                }
+            }
+              if (temp != null)
+            {
+                recent_list_menu.Remove(temp);
+                menu_1.DropDownItems.Remove(temp);
+            }
+            temp = new ToolStripMenuItem(filename, null, recent_Click, Path.GetFileName(filename));
+            foreach (ToolStripMenuItem A in recent_list_menu)
+            {
+                menu_1.DropDownItems.Remove(A);
+            }
+            recent_list_menu.Add(temp);
+            recent_list_menu.Reverse();
+            foreach (ToolStripMenuItem A in recent_list_menu)
+            {
+                menu_1.DropDownItems.Add(A);
+            }
+         //   recent_list_menu.Reverse();
+            saveRecent();
+            
+        }
+        private void recent_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            this.dme_load(item.Text);
+        }
+        private List<string> getRecent()
+        {
+            List<string> value = new List<string>();
+            List<string> badValue = new List<string>();
+            FileStream FR = new FileStream("recent.cfg",FileMode.OpenOrCreate);
+            StreamReader tr = new StreamReader(FR);
+            for (int x = 0; x < 5; x++)
+            {
+                if (tr.EndOfStream)
+                    break;
+                value.Add(tr.ReadLine());
+            }
+            foreach (string D in value)
+            {
+                if (!File.Exists(D))
+                    badValue.Add(D); // you can't modify a list inside a foreach loop..
+            }
+            foreach (string D in badValue)
+            {
+                value.Remove(D);
+            }
+            FR.Close();
+            tr.Close();
+            value.Reverse();
+            return value;
+        }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -67,7 +159,9 @@ namespace DreamEdit
         {
             men_open.ShowDialog();
             dme_load(men_open.FileName);
+            addToRecent(men_open.FileName);
         }
+
         private void close_all_tabs()
         {
                 foreach (TabPage P in tabControl1.TabPages)
@@ -129,6 +223,8 @@ namespace DreamEdit
         }
         private void dme_load(string filename)
         {
+            if (Path.GetExtension(filename) != ".dme")
+                return;
             info.dme_path = filename;
             info.load_dme();
             if (info.dme_Loaded)
@@ -836,6 +932,12 @@ namespace DreamEdit
         private void clearConsoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             console.ClearText();
+        }
+
+        private void tempToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 F = new Form1();
+            F.Show();
         }
     }
 }

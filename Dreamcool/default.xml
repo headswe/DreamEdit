@@ -13,7 +13,7 @@
       <Style Name="ATTRIBUTE"					ForeColor="Red" />
       <Style Name="BACKTICKS"					ForeColor="Red" />
       <Style Name="BINARY"					ForeColor="Orange" />
-      <Style Name="BINNUMBER"					ForeColor="Orange" />
+      <Style Name="BINNUMBER"					ForeColor="Black" />
       <Style Name="BRACELIGHT"				ForeColor="Red" Bold="Yes"/>
       <Style Name="BLOCK_COMMENT"				ForeColor="Green" />
       <Style Name="CHAR"						ForeColor="Red" />
