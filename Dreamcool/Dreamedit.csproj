@@ -6,9 +6,9 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1485D97B-5DB4-4EB6-9554-A381A80D9149}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <RootNamespace>DreamEdit</RootNamespace>
     <AssemblyName>DreamEdit</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
@@ -42,6 +42,13 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FreeImageNET">
+      <HintPath>..\..\..\..\..\Downloads\FreeImage3153Win32\Library\bin\Debug\FreeImageNET.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zlib, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\zlib-v1.9\Debug\Ionic.Zlib.dll</HintPath>
+    </Reference>
     <Reference Include="irrKlang.NET4">
       <HintPath>.\irrKlang.NET4.dll</HintPath>
     </Reference>
@@ -68,29 +75,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BZip2\BZip2.cs" />
-    <Compile Include="BZip2\BZip2Constants.cs" />
-    <Compile Include="BZip2\BZip2Exception.cs" />
-    <Compile Include="BZip2\BZip2InputStream.cs" />
-    <Compile Include="BZip2\BZip2OutputStream.cs" />
-    <Compile Include="BZip2\Checksums\Adler32.cs" />
-    <Compile Include="BZip2\Checksums\CRC32.cs" />
-    <Compile Include="BZip2\Checksums\IChecksum.cs" />
-    <Compile Include="BZip2\Checksums\StrangeCRC.cs" />
-    <Compile Include="BZip2\Core\FileSystemScanner.cs" />
-    <Compile Include="BZip2\Core\INameTransform.cs" />
-    <Compile Include="BZip2\Core\IScanFilter.cs" />
-    <Compile Include="BZip2\Core\NameFilter.cs" />
-    <Compile Include="BZip2\Core\PathFilter.cs" />
-    <Compile Include="BZip2\Core\StreamUtils.cs" />
-    <Compile Include="BZip2\Core\WindowsPathUtils.cs" />
-    <Compile Include="BZip2\Form1.cs">
+    <Compile Include="DMI\Directions.cs" />
+    <Compile Include="DMI\DMimage.cs" />
+    <Compile Include="DMI\DMIParser.cs" />
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BZip2\Form1.Designer.cs">
+    <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="BZip2\SharpZipBaseException.cs" />
     <Compile Include="FRdialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,7 +111,8 @@
       <DependentUpon>Mediaplayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Parser.cs" />
-    <Compile Include="RecentMenuItem.cs" />
+    <Compile Include="Other\Recent.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="string_dialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,7 +140,13 @@
     <Compile Include="Console.Designer.cs">
       <DependentUpon>Console.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BZip2\Form1.resx">
+    <Compile Include="DMI\dmiViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DMI\dmiViewer.Designer.cs">
+      <DependentUpon>dmiViewer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRdialog.resx">
@@ -183,6 +183,9 @@
     <EmbeddedResource Include="Console.resx">
       <DependentUpon>Console.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DMI\dmiViewer.resx">
+      <DependentUpon>dmiViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,12 +196,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="wires.dmi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="dm.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="default.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FreeImage.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="gui\dir.ico">
@@ -218,6 +227,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

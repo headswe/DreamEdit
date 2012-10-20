@@ -29,50 +29,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scintilla2 = new ScintillaNet.Scintilla();
+            this.editor = new ScintillaNet.Scintilla();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            ((System.ComponentModel.ISupportInitialize)(this.scintilla2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editor)).BeginInit();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // scintilla2
+            // editor
             // 
-            this.scintilla2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.scintilla2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.scintilla2.ConfigurationManager.CustomLocation = "dm.xml";
-            this.scintilla2.ConfigurationManager.Language = "cpp";
-            this.scintilla2.Folding.Flags = ScintillaNet.FoldFlag.Box;
-            this.scintilla2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.scintilla2.Indentation.ShowGuides = true;
-            this.scintilla2.Indentation.SmartIndentType = ScintillaNet.SmartIndent.CPP;
-            this.scintilla2.IsBraceMatching = true;
-            this.scintilla2.Lexing.Lexer = ScintillaNet.Lexer.Cpp;
-            this.scintilla2.Lexing.LexerName = "cpp";
-            this.scintilla2.Lexing.LineCommentPrefix = "";
-            this.scintilla2.Lexing.StreamCommentPrefix = "";
-            this.scintilla2.Lexing.StreamCommentSufix = "";
-            this.scintilla2.Location = new System.Drawing.Point(0, 28);
-            this.scintilla2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.scintilla2.Margins.Margin0.Width = 40;
-            this.scintilla2.Name = "scintilla2";
-            this.scintilla2.Size = new System.Drawing.Size(390, 287);
-            this.scintilla2.Styles.BraceBad.FontName = "Verdana";
-            this.scintilla2.Styles.BraceLight.FontName = "Verdana";
-            this.scintilla2.Styles.ControlChar.FontName = "Verdana";
-            this.scintilla2.Styles.Default.FontName = "Verdana";
-            this.scintilla2.Styles.IndentGuide.FontName = "Verdana";
-            this.scintilla2.Styles.LastPredefined.FontName = "Verdana";
-            this.scintilla2.Styles.LineNumber.FontName = "Verdana";
-            this.scintilla2.Styles.Max.FontName = "Verdana";
-            this.scintilla2.TabIndex = 0;
-            this.scintilla2.Load += new System.EventHandler(this.scintilla2_Load);
-            this.scintilla2.TextChanged += new System.EventHandler<System.EventArgs>(this.scintilla2_TextChanged);
-            this.scintilla2.TextInserted += new System.EventHandler<ScintillaNet.TextModifiedEventArgs>(this.scintilla2_TextInserted);
-            this.scintilla2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scintilla2_KeyDown);
+            this.editor.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.editor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editor.ConfigurationManager.CustomLocation = "dm.xml";
+            this.editor.ConfigurationManager.Language = "cpp";
+            this.editor.Folding.Flags = ScintillaNet.FoldFlag.Box;
+            this.editor.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.editor.Indentation.ShowGuides = true;
+            this.editor.Indentation.SmartIndentType = ScintillaNet.SmartIndent.CPP;
+            this.editor.IsBraceMatching = true;
+            this.editor.Lexing.Lexer = ScintillaNet.Lexer.Cpp;
+            this.editor.Lexing.LexerName = "cpp";
+            this.editor.Lexing.LineCommentPrefix = "";
+            this.editor.Lexing.StreamCommentPrefix = "";
+            this.editor.Lexing.StreamCommentSufix = "";
+            this.editor.Location = new System.Drawing.Point(0, 28);
+            this.editor.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.editor.Margins.Margin0.Width = 40;
+            this.editor.Name = "editor";
+            this.editor.Size = new System.Drawing.Size(390, 287);
+            this.editor.Styles.BraceBad.FontName = "Verdana";
+            this.editor.Styles.BraceLight.FontName = "Verdana";
+            this.editor.Styles.ControlChar.FontName = "Verdana";
+            this.editor.Styles.Default.FontName = "Verdana";
+            this.editor.Styles.IndentGuide.FontName = "Verdana";
+            this.editor.Styles.LastPredefined.FontName = "Verdana";
+            this.editor.Styles.LineNumber.FontName = "Verdana";
+            this.editor.Styles.Max.FontName = "Verdana";
+            this.editor.TabIndex = 0;
+            this.editor.Load += new System.EventHandler(this.scintilla2_Load);
+            this.editor.TextChanged += new System.EventHandler<System.EventArgs>(this.scintilla2_TextChanged);
+            this.editor.TextInserted += new System.EventHandler<ScintillaNet.TextModifiedEventArgs>(this.scintilla2_TextInserted);
+            this.editor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scintilla2_KeyDown);
             // 
             // toolStripContainer1
             // 
@@ -104,10 +104,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
-            this.Controls.Add(this.scintilla2);
+            this.Controls.Add(this.editor);
             this.Name = "textEditor";
             this.Size = new System.Drawing.Size(390, 315);
-            ((System.ComponentModel.ISupportInitialize)(this.scintilla2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editor)).EndInit();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
@@ -118,7 +118,7 @@
 
         #endregion
 
-        private ScintillaNet.Scintilla scintilla2;
+        private ScintillaNet.Scintilla editor;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
 

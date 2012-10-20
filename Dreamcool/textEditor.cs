@@ -18,7 +18,7 @@ namespace DreamEdit
         {
             InitializeComponent();
             mainForm = parent;
-            TabControl tabCon = (TabControl)scintilla2.FindReplace.Window.Controls["tabAll"];
+            TabControl tabCon = (TabControl)editor.FindReplace.Window.Controls["tabAll"];
             TabPage bP = new TabPage();
             bP.Controls.Add(new FRtab(mainWindow.info, C, parent));
             bP.Name = "Find in Files";
@@ -33,7 +33,7 @@ namespace DreamEdit
 
         private void scintilla2_Load(object sender, EventArgs e)
         {
-            scintilla2.Lexing.Colorize();
+            editor.Lexing.Colorize();
         }
 
         private void scintilla2_TextChanged(object sender, EventArgs e)

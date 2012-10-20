@@ -32,10 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.menu_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.newDMEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savemenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +62,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.work_bar = new System.Windows.Forms.ProgressBar();
             this.console = new DreamEdit.Console();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -79,7 +79,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(974, 23);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // menu
             // 
@@ -87,7 +86,7 @@
             this.menu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menu_1,
+            this.MenuFile,
             this.viewToolStripMenuItem,
             this.editToolStripMenuItem,
             this.sourceToolStripMenuItem});
@@ -101,17 +100,16 @@
             this.menu.DragDrop += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragDrop);
             this.menu.DragEnter += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragEnter);
             // 
-            // menu_1
+            // MenuFile
             // 
-            this.menu_1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newDMEToolStripMenuItem,
             this.openToolStripMenuItem,
             this.savemenu,
             this.toolStripSeparator1});
-            this.menu_1.Name = "menu_1";
-            this.menu_1.Size = new System.Drawing.Size(37, 19);
-            this.menu_1.Text = "File";
-            this.menu_1.Click += new System.EventHandler(this.menu_1_Click);
+            this.MenuFile.Name = "MenuFile";
+            this.MenuFile.Size = new System.Drawing.Size(37, 19);
+            this.MenuFile.Text = "File";
             // 
             // newDMEToolStripMenuItem
             // 
@@ -133,6 +131,11 @@
             this.savemenu.Size = new System.Drawing.Size(152, 22);
             this.savemenu.Text = "Save All";
             this.savemenu.Click += new System.EventHandler(this.savemenu_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // viewToolStripMenuItem
             // 
@@ -250,9 +253,9 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Location = new System.Drawing.Point(0, 23);
             this.splitContainer1.Name = "splitContainer1";
@@ -261,7 +264,7 @@
             // 
             this.splitContainer1.Panel1.AllowDrop = true;
             this.splitContainer1.Panel1.Controls.Add(this.file_list);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+
             // 
             // splitContainer1.Panel2
             // 
@@ -277,7 +280,6 @@
             this.closeWithoutSaveingToolStripMenuItem});
             this.tab_menu.Name = "tab_menu";
             this.tab_menu.Size = new System.Drawing.Size(185, 48);
-            this.tab_menu.Opening += new System.ComponentModel.CancelEventHandler(this.tab_menu_Opening);
             // 
             // closeToolStripMenuItem
             // 
@@ -341,8 +343,8 @@
             // console
             // 
             this.console.AllowDrop = true;
-            this.console.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.console.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.console.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.console.Location = new System.Drawing.Point(2, 284);
             this.console.Name = "console";
@@ -350,11 +352,6 @@
             this.console.TabIndex = 2;
             this.console.DragDrop += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragDrop);
             this.console.DragEnter += new System.Windows.Forms.DragEventHandler(this.mainWindow_DragEnter);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // mainWindow
             // 
@@ -395,7 +392,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem menu_1;
+        public System.Windows.Forms.ToolStripMenuItem MenuFile;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog men_open;
         private System.Windows.Forms.TabControl tabControl1;

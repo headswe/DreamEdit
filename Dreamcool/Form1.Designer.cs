@@ -28,46 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.text = new System.Windows.Forms.RichTextBox();
+            this.box = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.box)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // text
             // 
-            this.button1.Location = new System.Drawing.Point(311, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "startTest";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.text.Location = new System.Drawing.Point(374, 23);
+            this.text.Name = "text";
+            this.text.Size = new System.Drawing.Size(365, 296);
+            this.text.TabIndex = 0;
+            this.text.Text = "";
             // 
-            // pictureBox1
+            // box
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(79, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(187, 228);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.box.Location = new System.Drawing.Point(53, 37);
+            this.box.Name = "box";
+            this.box.Size = new System.Drawing.Size(283, 264);
+            this.box.TabIndex = 1;
+            this.box.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 344);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(751, 331);
+            this.Controls.Add(this.box);
+            this.Controls.Add(this.text);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.box)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox text;
+        private System.Windows.Forms.PictureBox box;
     }
 }

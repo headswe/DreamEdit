@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Collections.Generic;
+
 namespace DreamEdit
 {
 
@@ -39,8 +40,8 @@ namespace DreamEdit
 
         }
         ImageList image_list = new ImageList();
-        List<String> recent_list;
-        List<ToolStripMenuItem> recent_list_menu = new List<ToolStripMenuItem>();
+        string dme_string = File.ReadAllText("res\\default.dme");
+        string dm_string = File.ReadAllText("res\\default.dm");
         public mainWindow()
         {
             InitializeComponent();
@@ -54,112 +55,29 @@ namespace DreamEdit
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dms", BlackFox.Win32.Icons.SystemIconSize.Small));
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dmm", BlackFox.Win32.Icons.SystemIconSize.Small));
             file_list.ImageList = image_list;
-            recent_list = getRecent();
-            foreach (string path in recent_list)
+            Recent.recent_list = Recent.getRecent();
+            foreach (string path in Recent.recent_list)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(path, null, recent_Click, Path.GetFileName(path));
-                menu_1.DropDownItems.Add(item);
-                recent_list_menu.Add(item);
+                MenuFile.DropDownItems.Add(item);
+                Recent.recent_list_menu.Add(item);
 
             }
         }
-        private void saveRecent()
-        {
-            StreamWriter tr = new StreamWriter("recent.cfg");
-            foreach (String D in recent_list)
-            {
-                tr.WriteLine(D);
-            }
-            tr.Close();
-        }
-        private void addToRecent(string filename)
-        {
-            ToolStripMenuItem temp = null;
-            if (!recent_list.Contains(filename))
-            {
-                if (recent_list.Count >= 5)
-                {
-                    recent_list.RemoveAt(4);
-                    recent_list.Add(filename);
-                }
-                else
-                    recent_list.Add(filename);
-            }
-            else
-            {
-
-                foreach (ToolStripMenuItem d in recent_list_menu)
-                {
-                    if (d.Text == filename)
-                        temp = d; break;
-                }
-            }
-              if (temp != null)
-            {
-                recent_list_menu.Remove(temp);
-                menu_1.DropDownItems.Remove(temp);
-            }
-            temp = new ToolStripMenuItem(filename, null, recent_Click, Path.GetFileName(filename));
-            foreach (ToolStripMenuItem A in recent_list_menu)
-            {
-                menu_1.DropDownItems.Remove(A);
-            }
-            recent_list_menu.Add(temp);
-            recent_list_menu.Reverse();
-            foreach (ToolStripMenuItem A in recent_list_menu)
-            {
-                menu_1.DropDownItems.Add(A);
-            }
-         //   recent_list_menu.Reverse();
-            saveRecent();
-            
-        }
-        private void recent_Click(object sender, EventArgs e)
+       
+        public void recent_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if (info.dme_Loaded)
+                reset();
             this.dme_load(item.Text);
         }
-        private List<string> getRecent()
-        {
-            List<string> value = new List<string>();
-            List<string> badValue = new List<string>();
-            FileStream FR = new FileStream("recent.cfg",FileMode.OpenOrCreate);
-            StreamReader tr = new StreamReader(FR);
-            for (int x = 0; x < 5; x++)
-            {
-                if (tr.EndOfStream)
-                    break;
-                value.Add(tr.ReadLine());
-            }
-            foreach (string D in value)
-            {
-                if (!File.Exists(D))
-                    badValue.Add(D); // you can't modify a list inside a foreach loop..
-            }
-            foreach (string D in badValue)
-            {
-                value.Remove(D);
-            }
-            FR.Close();
-            tr.Close();
-            value.Reverse();
-            return value;
-        }
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void menu_1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             men_open.ShowDialog();
             dme_load(men_open.FileName);
-            addToRecent(men_open.FileName);
+            Recent.addToRecent(men_open.FileName,this);
         }
 
         private void close_all_tabs()
@@ -279,7 +197,6 @@ namespace DreamEdit
 
         private void savemenu_Click(object sender, EventArgs e)
         {
-
             save_all();
         }
         private void save_all()
@@ -292,7 +209,7 @@ namespace DreamEdit
         private void save_tab(TabPage P, string path)
         {
             System.IO.StreamWriter file = new System.IO.StreamWriter(path);
-            file.Write(P.Controls[0].Controls["scintilla2"].Text);
+            file.Write(P.Controls[0].Controls["editor"].Text);
             textEditor UC = (textEditor)P.Controls[0];
             UC.isModified = false;
             tabControl1.Invalidate();
@@ -306,8 +223,8 @@ namespace DreamEdit
                 return;
             }
             System.IO.StreamWriter file = new System.IO.StreamWriter(F.FullPath);
-            file.Write(P.Controls[0].Controls["scintilla2"].Text);
-            F.Text = P.Controls[0].Controls["scintilla2"].Text;
+            file.Write(P.Controls[0].Controls["editor"].Text);
+            F.Text = P.Controls[0].Controls["editor"].Text;
             textEditor UC = (textEditor)P.Controls[0];
             UC.isModified = false;
             tabControl1.Invalidate();
@@ -330,10 +247,10 @@ namespace DreamEdit
                 throw new NullReferenceException("Could not find file " + info.dirs + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
             P.Controls.Add(new textEditor(this, console));
-            P.Controls[0].Controls["scintilla2"].Text = F.Text;
+            P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["scintilla2"];
+            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
             P.Controls[0].Tag = P;
             P.Tag = F;
@@ -366,14 +283,24 @@ namespace DreamEdit
                 tabControl1.SelectTab(V);
                 return;
             }
+            if (F.Extension == ".dmi")
+            {
+                TabPage page = new TabPage(F.FileName + F.Extension);
+                page.Text = F.FileName + F.Extension;
+                page.Name = page.Text;
+                page.Controls.Add(new DMI.dmiViewer(new DMI.DMimage(F.FullPath)));
+                tabControl1.TabPages.Add(page);
+                tabControl1.SelectTab(page);
+                return;
+            }
             if (F.Extension != ".dm")
                 return;
             TabPage P = new TabPage(F.FileName + F.Extension);
             P.Controls.Add(new textEditor(this, console));
-            P.Controls[0].Controls["scintilla2"].Text = F.Text;
+            P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["scintilla2"];
+            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
             P.Controls[0].Tag = P;
             P.Tag = F;
@@ -391,7 +318,7 @@ namespace DreamEdit
                 if (fi.InternalPath == name)
                 {
                     tabControl1.SelectTab(B);
-                    chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["scintilla2"];
+                    chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
                     chat.GoTo.Line(line);
                     return;
                 }
@@ -406,16 +333,16 @@ namespace DreamEdit
                 throw new NullReferenceException("Could not find file " + info.dir + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
             P.Controls.Add(new textEditor(this, console));
-            P.Controls[0].Controls["scintilla2"].Text = F.Text;
+            P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
             P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["scintilla2"];
+            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
             P.Controls[0].Tag = P;
             P.Tag = F;
             tabControl1.TabPages.Add(P);
             tabControl1.SelectTab(P);
-            chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["scintilla2"];
+            chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
             chat.GoTo.Line(Convert.ToInt32(line));
         }
         public void link_sent(string name, string line)
@@ -506,7 +433,7 @@ namespace DreamEdit
                 {
                     if (tabControl1.SelectedTab != null)
                     {
-                        ScintillaNet.Scintilla pad = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["scintilla2"];
+                        ScintillaNet.Scintilla pad = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
                     }
                 }
                 else
@@ -623,9 +550,14 @@ namespace DreamEdit
 
             // Get the real bounds for the tab rectangle.
             Rectangle _TabBounds = tabControl1.GetTabRect(e.Index);
-            textEditor F = (textEditor)_TabPage.Controls[0];
-            if (F.isModified)
-                _TextBrush = new SolidBrush(Color.Red);
+            if (_TabPage.Controls[0] is textEditor)
+            {
+                textEditor F = (textEditor)_TabPage.Controls[0];
+                if (F.isModified)
+                    _TextBrush = new SolidBrush(Color.Red);
+                else
+                    _TextBrush = new System.Drawing.SolidBrush(e.ForeColor);
+            }
             else
                 _TextBrush = new System.Drawing.SolidBrush(e.ForeColor);
             if (e.State == DrawItemState.Selected)
@@ -800,10 +732,13 @@ namespace DreamEdit
         }
         private void newDMEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
+            DialogResult result;
+            result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.Cancel)
+                return;
             string_dialog S = new string_dialog("Enivorment name:");
-            S.ShowDialog();
-            if (S.DialogResult == DialogResult.Cancel)
+            result = S.ShowDialog();
+            if (result == DialogResult.Cancel)
                 return;
             string name = S.getresult();
             string path = folderBrowserDialog1.SelectedPath;
@@ -818,24 +753,17 @@ namespace DreamEdit
             P = new StreamWriter(path + "\\" + name + "\\" + name + ".dm");
             P.Write(dm_string);
             P.Close();
-            File.AppendAllText(path+"\\"+name+"\\" + name + ".dme", "\n #include \""+name+".dm\"\n // END_INCLUDE");
-          //  this.reset();
-
+            File.AppendAllText(path + "\\" + name + "\\" + name + ".dme", "\n #include \"" + name + ".dm\"\n // END_INCLUDE");
         }
 
-        private void tab_menu_Opening(object sender, CancelEventArgs e)
-        {
 
-        }
-        string dme_string = File.ReadAllText("res\\default.dme");
-        string dm_string = File.ReadAllText("res\\default.dm");
 
         private void gotoLineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TabPage P = tabControl1.SelectedTab;
             if (P == null)
                 return;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["scintilla2"];
+            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
             if (note == null)
                 return;
             note.GoTo.ShowGoToDialog();
@@ -917,6 +845,8 @@ namespace DreamEdit
         {
             foreach (TabPage _tabPage in tabControl1.TabPages)
             {
+                if (!(_tabPage.Controls[0] is textEditor))
+                    continue;
                 textEditor F = (textEditor)_tabPage.Controls[0];
                 if (F.isModified)
                 {
