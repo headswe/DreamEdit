@@ -47,6 +47,7 @@ namespace DreamEdit
             InitializeComponent();
             info = new Info(this);
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            image_list.ColorDepth = ColorDepth.Depth32Bit;
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension("Directory", BlackFox.Win32.Icons.SystemIconSize.Small));
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dm", BlackFox.Win32.Icons.SystemIconSize.Small));
             image_list.Images.Add(BlackFox.Win32.Icons.IconFromExtension(".dmf", BlackFox.Win32.Icons.SystemIconSize.Small));
@@ -246,13 +247,13 @@ namespace DreamEdit
             if (F == null)
                 throw new NullReferenceException("Could not find file " + info.dirs + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor(this, console));
+            P.Controls.Add(new textEditor(this, console,P));
             P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
-            P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
+        //    P.Controls[0].Dock = DockStyle.Fill;
+            ScintillaNET.Scintilla note = (ScintillaNET.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
-            P.Controls[0].Tag = P;
+            P.Controls["editor"].Tag = P;
             P.Tag = F;
             tabControl1.TabPages.Add(P);
             tabControl1.SelectTab(P);
@@ -296,20 +297,19 @@ namespace DreamEdit
             if (F.Extension != ".dm")
                 return;
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor(this, console));
+            P.Controls.Add(new textEditor(this, console,P));
             P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
-            P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
+           // P.Controls[0].Dock = DockStyle.Fill;
+            ScintillaNET.Scintilla note = (ScintillaNET.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
-            P.Controls[0].Tag = P;
             P.Tag = F;
             tabControl1.TabPages.Add(P);
             tabControl1.SelectTab(P);
         }
         public void open_tab(string name, int line)
         {
-            ScintillaNet.Scintilla chat;
+            ScintillaNET.Scintilla chat;
             if(name.Contains(info.dir))
                 name = name.Remove(0,info.dir.Length+1);
             foreach (TabPage B in tabControl1.TabPages)
@@ -318,7 +318,7 @@ namespace DreamEdit
                 if (fi.InternalPath == name)
                 {
                     tabControl1.SelectTab(B);
-                    chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
+                    chat = (ScintillaNET.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
                     chat.GoTo.Line(line);
                     return;
                 }
@@ -332,22 +332,25 @@ namespace DreamEdit
             if (F == null)
                 throw new NullReferenceException("Could not find file " + info.dir + "\\" + name);
             TabPage P = new TabPage(F.FileName + F.Extension);
-            P.Controls.Add(new textEditor(this, console));
+            P.Controls.Add(new textEditor(this, console,P));
             P.Controls[0].Controls["editor"].Text = F.Text;
             P.Controls[0].Size = tabControl1.Size;
-            P.Controls[0].Dock = DockStyle.Fill;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)P.Controls[0].Controls["editor"];
+           // P.Controls[0].Dock = DockStyle.Fill;
+            ScintillaNET.Scintilla note = (ScintillaNET.Scintilla)P.Controls[0].Controls["editor"];
             note.UndoRedo.EmptyUndoBuffer();
-            P.Controls[0].Tag = P;
+            P.Controls["editor"].Tag = P;
             P.Tag = F;
             tabControl1.TabPages.Add(P);
             tabControl1.SelectTab(P);
-            chat = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
+            chat = (ScintillaNET.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
             chat.GoTo.Line(Convert.ToInt32(line));
+            
         }
         public void link_sent(string name, string line)
         {
-            open_tab(name, Convert.ToInt32(line));
+            open_tab(name, Convert.ToInt32(line)-1);
+            ScintillaNET.Scintilla editor = (ScintillaNET.Scintilla)tabControl1.TabPages[name].Controls["editor"];
+   
         }
         private void tabControl1_Click(object sender, EventArgs e)
         {
@@ -433,14 +436,14 @@ namespace DreamEdit
                 {
                     if (tabControl1.SelectedTab != null)
                     {
-                        ScintillaNet.Scintilla pad = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
+                        ScintillaNET.Scintilla pad = (ScintillaNET.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
                     }
                 }
                 else
                 {
-                    //  ScintillaNet.FindReplaceDialog dialog = new ScintillaNet.FindReplaceDialog();
+                    //  ScintillaNET.FindReplaceDialog dialog = new ScintillaNET.FindReplaceDialog();
                     // dialog.ShowDialog();
-                    //  ScintillaNet.FindReplace FF;
+                    //  ScintillaNET.FindReplace FF;
 
 
                 }
@@ -763,7 +766,7 @@ namespace DreamEdit
             TabPage P = tabControl1.SelectedTab;
             if (P == null)
                 return;
-            ScintillaNet.Scintilla note = (ScintillaNet.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
+            ScintillaNET.Scintilla note = (ScintillaNET.Scintilla)tabControl1.SelectedTab.Controls[0].Controls["editor"];
             if (note == null)
                 return;
             note.GoTo.ShowGoToDialog();

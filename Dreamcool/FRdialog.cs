@@ -37,14 +37,14 @@ namespace DreamEdit
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             worker.WorkerReportsProgress = true;
-            int totalFiles = 0;
+            double totalFiles = 0;
             foreach (fileInfo F in info.files.Values)
             {
                 if (F.Extension != ".dm")
                     continue;
                 totalFiles++;
             }
-            int doneFiles = 0;
+            double doneFiles = 0;
             foreach (fileInfo F in info.files.Values)
             {
                 if (F.Extension != ".dm")
@@ -67,7 +67,7 @@ namespace DreamEdit
                     if (y >= 0)
                     {
                         lineFound n = new lineFound();
-                        n.str = textBox1.Text;
+                        n.str = strLine;
                         n.line = line;
                         n.file = F.FullPath;
                         arrStr.Add(n);
@@ -75,7 +75,8 @@ namespace DreamEdit
                     line++;
                 }
                 doneFiles++;
-                worker.ReportProgress((doneFiles / totalFiles) * 100);
+                int progress = (int)Math.Round((doneFiles / totalFiles) * 100);
+                worker.ReportProgress(progress);
             }
 
         }

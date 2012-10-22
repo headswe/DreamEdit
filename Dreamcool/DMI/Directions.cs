@@ -19,6 +19,33 @@ public  class Directions {
 	public static int SOUTHEAST = 6;
 	public static int SOUTHWEST = 10;
     public static int[] ALL = new int[] { NORTH, NORTHEAST, NORTHWEST, SOUTH, SOUTHEAST, SOUTHWEST, EAST, WEST, };
+    public static string dirToString(int k)
+    {
+        switch (k)
+        {
+            case 0:
+                return "Center";
+            case 1:
+                return "North";
+            case 2:
+                return "South";
+            case 4:
+                return "East";
+            case 8:
+                return "West";
+            case 16:
+                return "Up";
+            case 5:
+                return "Northeast";
+            case 9:
+                return "Northwest";
+            case 6:
+                return "Southeast";
+            case 10:
+                return "Southwest";
+        }
+        return null;
+    }
 }
 	
 }

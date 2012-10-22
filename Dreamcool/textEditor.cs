@@ -14,21 +14,27 @@ namespace DreamEdit
         public bool isModified = false;
         public bool hasbeenmodified = false; // Best variable ever
         public mainWindow mainForm;
-        public textEditor(mainWindow parent,Console C)
+        public textEditor(mainWindow parent,Console C,TabPage P)
         {
             InitializeComponent();
             mainForm = parent;
-            TabControl tabCon = (TabControl)editor.FindReplace.Window.Controls["tabAll"];
+            this.Dock = DockStyle.Fill;
+            editor.Tag = P;
+            
+            //toolStrip1.Dock = DockStyle.Top;
+            // Not even sure what im doing here??
+   /*         TabControl tabCon = (TabControl)editor.FindReplace.Window.Controls["tabAll"];
             TabPage bP = new TabPage();
             bP.Controls.Add(new FRtab(mainWindow.info, C, parent));
             bP.Name = "Find in Files";
             bP.Text = bP.Name;
-            tabCon.TabPages.Add(bP);
+            tabCon.TabPages.Add(bP);*/
         }
 
-        private void scintilla2_TextInserted(object sender, ScintillaNet.TextModifiedEventArgs e)
+        
+        private void scintilla2_TextInserted(object sender,  ScintillaNET.TextModifiedEventArgs e)
         {
-
+        
         }
 
         private void scintilla2_Load(object sender, EventArgs e)
@@ -43,14 +49,19 @@ namespace DreamEdit
                 hasbeenmodified = true;
                 return;
             }
-            TabPage P = (TabPage)this.Tag;
+            TabPage P = (TabPage)editor.Tag;
             isModified = true;
-            P.Parent.Invalidate();
+          //  P.Parent.Invalidate();
+            
             
         }
 
         private void scintilla2_KeyDown(object sender, KeyEventArgs e)
         {
         }
+
+     
+
+ 
     }
 }

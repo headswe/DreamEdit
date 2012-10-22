@@ -2,7 +2,7 @@
 <ScintillaNET>
 
     <!-- Set up the language, style, and lexer for batch -->
-    <Language Name="cpp">
+    <Language Name="fuck">
       <AutoComplete FillUpCharacters=".([" SingleLineAccept="True" IsCaseSensitive="False">
         <List>
           var for if

@@ -34,6 +34,9 @@
             // 
             // imageView
             // 
+            this.imageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imageView.Location = new System.Drawing.Point(0, 27);
             this.imageView.Name = "imageView";
             this.imageView.Size = new System.Drawing.Size(826, 457);

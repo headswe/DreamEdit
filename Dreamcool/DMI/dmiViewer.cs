@@ -22,6 +22,7 @@ namespace DreamEdit.DMI
             imageView.TileSize = new Size(source.width, source.height);
             this.source = source;
             generate_stateview();
+            this.Dock = DockStyle.Fill;
 
         }
         private void generate_stateview()
@@ -66,7 +67,7 @@ namespace DreamEdit.DMI
                             group = groups[i];
                         }
                         else
-                           group = new ListViewGroup(i.ToString());groups[i] = group;
+                            group = new ListViewGroup(Directions.dirToString(i)+" ("+i.ToString()+")"); groups[i] = group;
                         imageView.LargeImageList.Images.Add(frame.directions[i]);
                         imageView.Items.Add(new ListViewItem("", imageCount,group));
                         imageCount++;
